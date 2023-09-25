@@ -1,0 +1,19 @@
+{% extends '/fend/base.djhtml' %} {% block container %}
+<div>
+  <!-- banner section -->
+  <!-- banner section ends -->
+  <!-- blog section starts -->
+  <div
+    class="d-flex align-items-center justify-content-center vh-100"
+    style="margin-top: 3rem; margin-bottom: 3rem"
+  >
+    <div class="text-center">
+      <h1 class="display-1 fw-bold">{{code}}</h1>
+      <p class="fs-3"><span class="text-danger">Opps!</span> {{txt}}</p>
+      <p class="lead">{{msg}}</p>
+      <a href="/" class="btn btn-primary">Go Home</a>
+    </div>
+  </div>
+  <!-- blog section ends -->
+</div>
+{% endblock %}

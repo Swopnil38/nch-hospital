@@ -1,0 +1,20 @@
+{% for data in query %}
+<div class="col-xl-6 col-lg-6 col-md-6">
+    <div class="latest-news-box mb-30">
+        <div class="latest-news-thumb mb-35">
+            <img src="{{data.cover}}" alt="" />
+        </div>
+        <div class="latest-news-content">
+            <div class="news-meta mb-10">
+                <span><a href="#" class="news-tag">{{data.publishedOn.strftime('%A, %Y %B %d')}}</a></span>
+            </div>
+            <h3>
+                <a href="/blog/{{data.slug}}"> {{data.title}}</a>
+            </h3>
+            <p>
+                {{data.content | truncate(100)}}
+            </p>
+        </div>
+    </div>
+</div>
+{% endfor %}

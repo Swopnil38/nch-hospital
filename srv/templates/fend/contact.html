@@ -1,0 +1,126 @@
+{% extends '/fend/base.djhtml' %} {% block container %}
+<section
+  class="contact-area pt-120 pb-90"
+  data-background="assets/img/bg/bg-map.png"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-4 col-lg-4 col-md-4">
+        <div class="contact text-center mb-30">
+          <i class="fas fa-envelope"></i>
+          <h3>Mail Us</h3>
+          <p>
+            <a href="mailto:nationalcityhospitalltd@gmail.com"
+              >nationalcityhospitalltd@gmail.com</a
+            >
+          </p>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4">
+        <div class="contact text-center mb-30">
+          <i class="fas fa-map-marker-alt"></i>
+          <h3>Visit Us</h3>
+          <p>Chitwan, Nepal</p>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4">
+        <div class="contact text-center mb-30">
+          <i class="fas fa-phone"></i>
+          <h3>Call Us</h3>
+          <p>+977 056 493611</p>
+        </div>
+      </div>
+      <!-- contact-form-area start -->
+      <section class="contact-form-area gray-bg pt-100 pb-100">
+        <div class="container">
+          <div class="form-wrapper">
+            <div class="row align-items-center">
+              <div class="col-xl-8 col-lg-8">
+                <div class="section-title mb-55">
+                  <p><span></span> Anything On your Mind</p>
+                  <h1>Estimate Your Idea</h1>
+                </div>
+              </div>
+            </div>
+            <div class="contact-form">
+              <form id="contact-form" action="/contact/form/submit">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-box user-icon mb-30">
+                      <input type="text" name="name" placeholder="Your Name" />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-box email-icon mb-30">
+                      <input
+                        type="text"
+                        name="email"
+                        placeholder="Your Email"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-box phone-icon mb-30">
+                      <input
+                        type="text"
+                        name="phone"
+                        placeholder="Your Phone"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-box subject-icon mb-30">
+                      <input
+                        type="text"
+                        name="subject"
+                        placeholder="Your Subject"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-box message-icon mb-30">
+                      <textarea
+                        name="message"
+                        id="message"
+                        cols="30"
+                        rows="10"
+                        placeholder="Your Message"
+                      ></textarea>
+                    </div>
+                    <div class="contact-btn text-center">
+                      <button class="btn btn-icon ml-0" type="submit">
+                        <span>+</span> get action
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <p class="ajax-response text-center"></p>
+            </div>
+            <section>
+              <div
+                id="contact-map"
+                class="contact-map"
+                style="margin-top: 2rem"
+              >
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.164272832427!2d84.42846407435624!3d27.681317226640925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3994fb2e57e19a9f%3A0x1e1a1b33901c6cb!2z4KSo4KWH4KS24KSo4KSyIOCkuOCkv-Ckn-ClgCDgpLngpLjgpY3gpKrgpL_gpJ_gpLIg4KSy4KS_4KSu4KS_4KSf4KWH4KSh!5e0!3m2!1sen!2snp!4v1690636281177!5m2!1sen!2snp"
+                  width="100%"
+                  height="100%"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+      <!-- contact-form-area end -->
+    </div>
+  </div>
+</section>
+
+{% endblock %}

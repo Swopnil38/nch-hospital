@@ -1,0 +1,27 @@
+<section class="blog-area pt-120 pb-80" >
+  <div class="container">
+    <div class="row">
+      <div id="blog-images" class="col-lg-8">
+        <script>
+          doad('blog-images', '/api/blog/list/image')
+        </script>
+      </div>
+      <div class="col-lg-4">
+      
+        <div class="widget mb-40">
+          <div class="widget-title-box mb-30">
+            <span class="animate-border"></span>
+            <h3 class="widget-title">Social Profile</h3>
+          </div>
+          <div class="social-profile">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+    
+      </div>
+    </div>
+  </div>
+</section>

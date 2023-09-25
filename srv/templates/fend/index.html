@@ -1,0 +1,39 @@
+{% extends '/fend/base.djhtml' %}
+
+{% block container %}
+
+      <!-- banner start -->
+  {% include '/fend/banner.html' %}
+ 
+      <!-- find-doctor-section start -->
+
+
+  {% include '/fend/find_doctor/find-doctor-section.html' %}
+
+     
+      <!-- services-area end -->
+      <!-- Center of Excellence start -->
+      {% include '/fend/coe.html' %}
+      <!-- Center of Excellence end -->
+
+      <!-- pricing-area start -->
+      {% include '/fend/pricing.html' %}
+      <!-- pricing-area end -->
+      <!-- cta-area start -->
+      <section
+        class="cta-area pos-rel pt-115 pb-120"
+        data-background="/assets/img/new/banner1.jpg"
+      >
+      {% include '/fend/lets_discuss.html' %}
+      </section>
+      {% include '/fend/testinomials.html' %}
+
+      <!-- cta-area end -->
+      <!-- latest-news-area start -->
+      {% include '/fend/blog.djhtml' %}
+    </main>
+
+{% endblock %}
+    <!-- JS here -->
+
+

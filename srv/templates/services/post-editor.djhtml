@@ -1,0 +1,218 @@
+{% set pk = pk | default('null') or 'null' %}
+{% set pageFor = pageFor | default(false) %}
+{% if pageFor is string() %}
+    {% set pageTitle = pageFor + ' ' + ('Add' if 'null' == pk else pk.__str__()) %}
+{% endif %}
+{% extends '/backend/base.djhtml' %}
+
+
+{% block head %}
+    {{ super() }}
+    <script src="/vendors/tinymce/tinymce.min.js"></script>
+{% endblock %}
+
+
+{% block content %}
+    <section id="breadcrumbs" class="breadcrumbs mb-3">
+        <div class="container">
+            <h2>Blog Post Editor</h2>
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block container %}
+<style>
+    .front-frame-img {
+        height: 250px;
+        width: 100%;
+        background-color: var(--blog-featured-bg);
+        display: flex;
+        justify-content: center;
+    }
+    
+    .front-frame-img img{
+        max-height: 100%;
+        max-width: 100%;
+        margin: auto;
+    }
+    
+    
+    .entry-img img {
+        object-fit: cover;
+        width: 50%;
+        height: 100%;
+    }
+    
+</style>
+    <form id="ed">
+        <div class="row">
+            <div class="col-md-8">
+                <label for="ed-title" class="form-label">
+                    Title <sup style="color:red">*</sup>
+                </label>
+
+                <input id="ed-title" name="title" value="{{obj.title}}" class="form-control mb-3" placeholder="Enter a Title" maxlength=128 required />
+
+                <div class="mb-3">
+                    <textarea id="ed-content" name="content" placeholder="Write a New Post">{{obj.content or ''}}</textarea>
+                </div>
+
+                <details id="ed-summary-details">
+                    <summary class="mb-3">
+                        Summary
+                        <button id="ed-btn-gen-summary" type="button" class="btn btn-outline-primary btn-sm">
+                            Generate
+                        </button>
+                    </summary>
+
+                    <textarea id="ed-summary" class="w-100" name="summary" placeholder="Enter summary here (max 200 characters)" maxlength="200" required>{{obj.summary or ''}}</textarea>
+                </details>
+
+                <label for="ed-symptoms" class="form-label">
+                     Symptoms <sup style="color:red">*</sup>
+                </label>
+                <div class="mb-3">
+                    <textarea id="ed-symptoms" name="symptoms" class="form-control" placeholder="Write a Symptoms">{{obj.symptoms or ''}}</textarea>
+                </div>
+
+                <label for="ed-procedure" class="form-label">
+                    Procedure <sup style="color:red">*</sup>
+               </label>
+               <div class="mb-3">
+                   <textarea id="ed-procedure" name="procedure" class="form-control" placeholder="Write procedure">{{obj.procedure or ''}}</textarea>
+               </div>
+
+               <label for="ed-symptoms" class="form-label">
+                    Treatments <sup style="color:red">*</sup>
+                </label>
+                <div class="mb-3">
+                    <textarea id="ed-treatments" name="treatments" class="form-control" placeholder="Write a treatments">{{obj.treatments or ''}}</textarea>
+                </div>
+
+                <label for="ed-tech" class="form-label">
+                    Technology <sup style="color:red">*</sup>
+                </label>
+                <div class="mb-3">
+                    <textarea id="ed-tech" name="tech" class="form-control" placeholder="Write Technology used">{{obj.tech or ''}}</textarea>
+                </div>
+
+                <div class="btn-back mb-4">
+                    <a href="/services/dash" class="btn btn-secondary"><i class="bi bi-box-arrow-left"></i> Go Back</a>
+                </div>
+            </div>
+
+            <div id="sidebar" class="col-md-4 d-flex flex-column">
+                <div>
+                    <label style="display:flex; justify-content: space-between;" for="ed-cover" class="form-label">
+                        <button id="ed-cover-reset" type="button" class="col-2 btn btn-sm btn-outline-primary">Reset</button>
+                            Services Image
+                        <button id="ed-cover-remove" type="button" class="col-2 btn btn-sm btn-outline-danger">Remove</button>
+                    </label>
+
+                    <hr />
+
+                    <input id="ed-cover" name="cover" value="{{obj.cover or ''}}" class="form-control" style="display:none" />
+
+                    <div class="front-frame-img">
+                        <img id="ed-cover-preview" src="{{obj.cover or '/assets/img/1600x900.webp'}}" />
+                    </div>
+                </div>
+                <hr>
+                <div class="mb-3">
+                    <label for="ed-yt" class="form-label">Youtube Link</label>
+                    <input id="ed-yt" name="links" value="{{obj.links or ''}}" class="form-control" placeholder="Place Youtube URL" maxlength=100 />
+                </div>
+
+                <div class="mb-3">
+                    <label for="ed-yt" class="form-label">Video Title</label>
+                    <input id="ed-yt" name="linkHeader" value="{{obj.linkHeader or ''}}" class="form-control" placeholder="Place Video Title" maxlength=100 />
+                </div>
+
+                <div class="mb-3">
+                    <label for="ed-yt" class="form-label">Video Description</label>
+                    <input id="ed-yt" name="linkCaption" value="{{obj.linkCaption or ''}}" class="form-control" placeholder="Place Video Caption" maxlength=100 />
+                </div>
+
+                <div class="mb-3">
+                    <label for="ed-slug" class="form-label">Slug</label>
+                    <input id="ed-slug" name="slug" value="{{obj.slug or ''}}" class="form-control" placeholder="Unique Slug URL" maxlength=100 />
+                </div>
+
+                <div class="mb-3">
+                    <label for="ed-category" class="form-label">
+                        Department <sup style="color:red">*</sup>
+                    </label>
+
+                    <select id="ed-category" name="department_id" value="{{ obj.department_id }}" class="form-control form-select" required>
+                        {% for d in department %}
+                            <option value="{{d.pk}}" {% if obj.department_id == d.pk %} selected {% endif %}>
+                                {{d.department_name}}
+                            </option>
+                        {% endfor%}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="ed-stages" class="form-label">
+                        stages <sup style="color:red">*</sup>
+                    </label>
+
+                    <select id="ed-stages" name="stages" value="{{ obj.stages }}" class="form-control form-select" required>
+                        {% for cat in stages %}
+                            <option value="{{cat}}" {% if obj.stages == cat %} selected {% endif %}>
+                                {{cat}}
+                            </option>
+                        {% endfor%}
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="ed-categorys" class="form-label">Category</label>
+                    
+                    <select id="ed-categorys" name="category" class="form-control form-select" required>
+                        <option value="Department" {%if obj.category == "Department" %} selected {% endif %}>Department</option>
+                        <option value="Services" {%if obj.category == "Services" %} selected {% endif %}>Services</option>
+
+                    </select>
+
+
+                </div>
+
+                <div class="mb-3">
+                    <label for="ed-tags" class="form-label">Tags</label>
+                    <input name="tags" id="ed-tags" value="{{' '.join(obj.tags)}}" class="form-control" pattern="([$#][a-zA-Z0-9-]+ ?)*" placeholder="#tag #separated #by #space" />
+                </div>
+
+                <hr />
+
+                <div id="btn-publish-delete" class="d-flex flex-row justify-content-between pt-2 pb-4">
+                    {% if 'null' != pk %}
+                        <div class="me-auto">
+                            <button id="btn-delete" type="button" class="btn btn-danger">
+                                <i class="fas fa-trash"></i>
+                                Delete
+                            </button>
+                        </div>
+                    {% endif %}
+
+                    <div class="ms-auto">
+                        <button id="btn-submit" type="submit" class="btn btn-success">
+                            <i class="fas fa-arrow-alt-circle-up"></i>
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+{% block tail %}
+    <script type="module">
+        import * as pf from '/static/service-editor.mjs';
+        pf.init('ed', {{ pk }})
+
+    </script>
+    
+{% endblock %}

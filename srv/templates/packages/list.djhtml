@@ -1,0 +1,58 @@
+{% set pageTitle = 'Blog' %}
+{% extends '/backend/base.djhtml' %}
+
+
+{% block head %}
+    <link rel='stylesheet' href='/static/css/blog.css'>
+{% endblock %}
+
+
+{% block content %}
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+            <h2>{{pageTitle}}</h2>
+        </div>
+    </section>
+
+    <section id="blog" class="blog">
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+                <div class="col entries">
+                    {% for row in query %}
+                        <article class="entry">
+                            <div class="entry-img">
+                                <img src="{{row.cover or '/assets/img/logo.png'}}" class="img-fluid">
+                            </div>
+
+                            <h2 class="entry-title">
+                                <a href="/blog/{{row.slug}}">{{row.title}}</a>
+                            </h2>
+
+                            <div class="entry-meta">
+                                <ul>
+                                    <li class="d-flex align-items-center">
+                                        <i class="bi bi-clock"></i>
+                                        <a href="blog-single.html">
+                                            <time>
+                                                {{row.publishedOn.strftime("%d %b, %Y")}}
+                                            </time>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="entry-content">
+                                <p>
+                                    {{row.summary}}
+                                </p>
+                                <div class="read-more">
+                                    <a href="/pkg/{{row.slug}}">Read More</a>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% for data in query %}
+<div class="col-xl-4 col-lg-6 col-md-6">
+    <div class="service-box service-box-border text-center mb-30">
+        <div class="service-thumb">
+            <img src="{{data.cover}}" alt="" />
+        </div>
+        <div class="service-content">
+            <h3><a href="/services/{{data.slug}}">{{data.title}}</a></h3>
+            <p>
+                {{data.summary}}
+            </p>
+            <a class="service-link" href="/services/{{data.slug}}">Read More</a>
+        </div>
+    </div>
+</div>
+{% endfor %}

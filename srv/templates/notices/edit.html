@@ -1,0 +1,51 @@
+{% extends '/backend/base.djhtml' %}
+
+{% block container %}
+<form id="wtfnotice"  enctype="multipart/form-data">
+	<div class="row bg-light border rounded mb-4">
+		<div class="col-md-8 col-xs-12 p-4">
+            <div class="row mb-3">
+				<label for="noticetitle" class="col-sm-2 col-form-label col-form-label-sm">Notice Title:</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control form-control-sm" name="title" id="noticetitle"
+					value="{{ obj.title }}" required>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label for="noticedesc" class="col-sm-2 col-form-label col-form-label-sm">Notice Description:</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control form-control-sm" name="description" id="noticedesc"
+					value="{{ obj.description }}" required>
+				</div>
+			</div>
+			
+		</div>
+
+	</div>
+
+	<div class="row pb-4">
+		<div class="col-12">
+			<button class="btn btn-primary mt-4" type="button" onclick="formSubmit()">
+				Update
+			</button>
+		</div>
+	</div>
+</form>
+
+<script>
+	function formSubmit() {
+		let ewtff = document.getElementById('wtfnotice')
+
+		let url = `/api/notice/edit/{{ obj.pk }}`; // Include the pk in the URL
+
+		fetch(url, { // Use the updated URL
+			method: 'POST',
+			body: new FormData(ewtff)
+		}).then(function (response) {
+			alert('Notice Updated Successfully')
+			window.location.href = '/notice/dash'
+		})
+	}
+
+	</script>
+{% endblock %}

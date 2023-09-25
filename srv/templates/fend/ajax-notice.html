@@ -1,0 +1,24 @@
+<div class="row h4service-active">
+
+    {% for data in query %}
+    <div class="col-xl-4 col-lg-6 col-md-6">
+      <div class="h4service-box white-bg mb-30">
+        <div class="service-thumb pos-rel mb-0">
+  
+          <a
+            style="background-color: #e12454;"
+            class="h4services-tag white-color text-uppercase f-700"
+            >{{data.title}}</a
+          >
+        </div>
+        <div class="h4services-content" style="-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+          <p class="mb-20 services-summary">
+            {{data.description }}
+          </p>
+
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  

@@ -1,0 +1,135 @@
+<div id="tab-detail" class="container">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button id="tab-service" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+              data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+              Symptoms
+            </button>
+            <button id="tab-service" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+              data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+              Procedures
+            </button>
+            <button id="tab-service" class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
+              data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
+              Treatments
+            </button>
+            <button id="tab-service" class="nav-link" id="nav-tech-tab" data-bs-toggle="tab" data-bs-target="#nav-tech"
+              type="button" role="tab" aria-controls="nav-tech" aria-selected="false">
+              Technologies
+            </button>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="faq-right-box">
+              <div id="accordion" class="mt-40">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                      <a href="#" class="btn-link collapsed" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="false" aria-controls="collapseOne">
+                        {% if row.symptoms is not none %}
+                          {{row.symptoms | truncate(32,true,'')}}
+                        {% else %}
+                          <h4 class="text-secondary text-center">Data Not found</h4>
+                        {% endif %}
+                      </a>
+                    </h5>
+                  </div>
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                      {{ row.symptoms }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="faq-right-box">
+              <div id="accordion" class="mt-40">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                      <a href="#" class="btn-link collapsed" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="false" aria-controls="collapseOne">
+                        {% if row.procedure is not none %}
+                          {{row.procedure | truncate(32,true,'')}}
+                        {% else %}
+                          <h4 class="text-secondary text-center">Data Not found</h4>
+                        {% endif %}
+                      </a>
+                    </h5>
+                  </div>
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                      {{row.procedure}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <div class="faq-right-box">
+              <div id="accordion" class="mt-40">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                      <a href="#" class="btn-link collapsed" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="false" aria-controls="collapseOne">
+                        {% if row.treatments is not none %}
+                          {{row.treatments | truncate(32,true,'')}}
+                          {% else %}
+                          <h4 class="text-secondary text-center">Data Not found</h4>
+                        {% endif %}
+                      </a>
+                    </h5>
+                  </div>
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                      <p>
+                        {{row.treatments}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="nav-tech" role="tabpanel" aria-labelledby="nav-tech-tab">
+            <div class="faq-right-box">
+              <div id="accordion" class="mt-40">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                      <a href="#" class="btn-link collapsed" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="false" aria-controls="collapseOne">
+                        {% if row.tech is not none %}
+                          {{row.tech | truncate(32,true,'')}}
+                          {% else %}
+                          <h4 class="text-secondary text-center">Data Not found</h4>
+                        {% endif %}
+                      </a>
+                    </h5>
+                  </div>
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                      <p>
+                        {{row.tech}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

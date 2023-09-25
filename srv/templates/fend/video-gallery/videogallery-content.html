@@ -1,0 +1,6 @@
+<div class="video-gallery">
+    {% for video in youtube_videos %}
+        <iframe src="https://www.youtube.com/embed/{{ video.video_id }}" frameborder="0" allowfullscreen style="min-height: 200px; margin: 50px;"></iframe>
+    
+        {% endfor %}
+</div>

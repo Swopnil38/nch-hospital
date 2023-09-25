@@ -1,0 +1,23 @@
+{% for data in query %}
+<div class="col-xl-4 col-lg-4 col-md-6">
+    <div class="pricing-box mb-30">
+        <div class="pricing-thumb mb-45">
+            <img src="{{data.cover}}" alt="" />
+        </div>
+        <div class="pricing-content">
+            <h3>{{data.title}}</h3>
+            <p>
+                {{data.content}}
+            </p>
+         
+            <a
+                data-animation="fadeInLeft"
+                data-delay=".6s"
+                href="#"
+                class="btn btn-icon ml-0"
+                >Price: Rs. {{data.prices}}</a
+            >
+        </div>
+    </div>
+</div>
+{% endfor %}

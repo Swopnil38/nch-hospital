@@ -1,0 +1,143 @@
+
+{% set pk = pk | default('null') or 'null' %}
+{% set pageFor = pageFor | default(false) %}
+{% if pageFor is string() %}
+    {% set pageTitle = pageFor + ' ' + ('Add' if 'null' == pk else pk.__str__()) %}
+{% endif %}
+{% extends '/backend/base.djhtml' %}
+
+
+{% block head %}
+    {{ super() }}
+    <script src="/vendors/tinymce/tinymce.min.js"></script>
+{% endblock %}
+
+
+{% block content %}
+    <section id="breadcrumbs" class="breadcrumbs mb-3">
+        <div class="container">
+            <h2>Photo Editor</h2>
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block container %}
+<style>
+    .front-frame-img {
+        height: 250px;
+        width: 100%;
+        background-color: var(--blog-featured-bg);
+        display: flex;
+        justify-content: center;
+    }
+    
+    .front-frame-img img{
+        max-height: 100%;
+        max-width: 100%;
+        margin: auto;
+    }
+    
+    
+    .entry-img img {
+        object-fit: cover;
+        width: 50%;
+        height: 100%;
+    }
+    
+</style>
+    <form id="ed">
+        <div class="row">
+
+            <div id="sidebar" class="col-md-4 d-flex flex-column">
+                <div>
+                    <label style="display:flex; justify-content: space-between;" for="ed-cover" class="form-label">
+                        <button id="ed-cover-reset" type="button" class="col-2 btn btn-sm btn-outline-primary">Reset</button>
+                            Add New Photo
+                        <button id="ed-cover-remove" type="button" class="col-2 btn btn-sm btn-outline-danger">Remove</button>
+                    </label>
+
+                    <hr />
+
+                    <input id="ed-cover" name="cover" value="{{obj.cover or ''}}" class="form-control" style="display:none" />
+
+                    <div class="front-frame-img">
+                        <img id="ed-cover-preview" src="{{obj.cover or '/assets/img/1600x900.webp'}}" />
+                    </div>
+                </div>
+
+                <hr />
+
+
+
+                <div id="btn-publish-delete" class="d-flex flex-row justify-content-between pt-2 pb-4">
+                    
+
+                    <div class="ms-auto">
+                        <button id="btn-submit" type="submit" class="btn btn-success">
+                            <i class="fas fa-arrow-alt-circle-up"></i>
+                            Submit
+                        </button>
+                    </div>
+
+                    <hr />
+                    <hr />
+
+
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <section id="breadcrumbs" class="breadcrumbs mb-3">
+        <div class="container">
+            <h2>Now Photos</h2>
+        </div>
+    </section>
+
+
+    <div id="ajax-gallery" class="row">
+        <script>
+          doad("ajax-gallery", "/api/nch/gallerys");
+        </script>
+      </div>
+{% endblock %}
+
+{% block tail %}
+
+<script>
+// Add JavaScript to handle the button click event
+document.addEventListener("DOMContentLoaded", function() {
+    const deleteButtons = document.querySelectorAll(".delete-button");
+    
+    deleteButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            const imageId = button.getAttribute("data-image-id");
+            
+            // Send an API request to delete the image with the specified imageId
+            fetch(`/api/gallery/posts/delete/${imageId}`, {
+                method: "DELETE",
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Handle successful deletion (e.g., remove the image from the DOM)
+                    button.parentNode.parentNode.remove(); // Assuming a simple structure
+                } else {
+                    // Handle deletion failure (e.g., show an error message)
+                    console.error("Failed to delete image");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        });
+    });
+});
+</script>
+
+    <script type="module">
+        import * as pf from '/static/glr-editor.mjs';
+        pf.init('ed', {{ pk }})
+    </script>
+{% endblock %}

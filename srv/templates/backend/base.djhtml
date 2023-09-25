@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dashboard</title>
+
+	<!-- Bootstrap css file -->
+	<link rel="stylesheet" type="text/css" href="/vendors/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/vendors/bootstrap-icons.css" />
+    <script src="/static/backend/base.js"></script>
+
+
+	{% block head %}{% endblock %}
+	<script>
+      function doad(id, api, body) {
+              fetch(api, {
+                  method  : 'POST',
+                  body    : body,
+              }).then(function(response) {
+                  if (!response.ok) return
+                  response.text().then(function(responseText) {
+                      document.getElementById(id).innerHTML = responseText
+                  })
+              })
+      }
+  </script>
+
+</head>
+<body>
+		{% include '/backend/header.html' %}
+		{% block content %}
+		{% endblock %}
+		<div class="container">
+	        {% block container %}{% endblock %}
+	    </div>
+	    {% block tail %}{% endblock %}
+
+	<!-- Bootstrap Js script -->
+	<script src="/vendors/bootstrap.bundle.min.js"></script>
+
+
+	   
+</body>
+</html>

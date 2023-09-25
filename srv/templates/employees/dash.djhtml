@@ -1,0 +1,91 @@
+{% set pageTitle = 'Employees Dashboard' %}
+{% extends '/backend/base.djhtml' %}
+
+
+{% block head %}
+    <link rel="stylesheet" href="/vendors/sdt.min.css" />
+    <script src="/vendors/sdt.min.js"></script>
+{% endblock %}
+
+
+{% block container %}
+<style>
+    .blinker {
+        color: red;
+        animation: blinker 1s linear infinite;
+    }
+    
+    @keyframes blinker {
+        50% {
+        opacity: 0;
+        }
+    }
+</style>
+    <h3 class="mt-3">Employees</h3>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <table id="mytable" class="table table-hover">
+                <thead>
+                    <tr>
+                        {% for h in headers %}
+                            <th>{{h}}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for row in query %}
+                        <tr>
+                            {% for f in row %}
+                                <td class="{% if f == 'draft' %} blinker {% elif f=='publish' %} text-success {% endif %}">{{f}}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let dt = new simpleDatatables.DataTable('#mytable', {
+                layout  : { top : '<button onclick="blogAdd()" class="btn btn-success">Add</button> {search}' },
+                columns : [
+                
+                    {  
+                        select: ['pk'],
+                        title  : 'Action',
+                        render: function (data, td, tr) {
+                            return `<a href='/emp/posts/${data.trim()}/editor' class="btn btn-sm btn-primary text-decoration-none">Edit</a>`
+                            }
+                    },
+                    {
+                        select : ['stages'],
+                        title  : 'Stages',
+                    },
+                    {
+                        select : ['name'],
+                        title  : 'Name',
+                    },
+                ],
+            })
+        }, false);
+
+        function blogAdd() {
+            let formData = new FormData()
+            formData.set('title', 'New Employee')
+            formData.set('stages', 'draft')
+
+            fetch('/api/emp/posts/add', {
+                method : 'POST',
+                body   : formData,
+            }).then(function (response) {
+                response.json().then(function (responseJSON) {
+                    let pk = responseJSON.pk
+                    window.location = `/emp/posts/${pk}/editor?stage=draft`
+                })
+            })
+        }
+    </script>
+{% endblock %}

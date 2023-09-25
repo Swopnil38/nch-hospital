@@ -1,0 +1,74 @@
+<div id="testimonialCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    {% for data in query %}
+    <li data-target="#testimonialCarousel" data-slide-to="{{ loop.index0 }}" {% if loop.index0 == 0 %}class="active"{% endif %}></li>
+    {% endfor %}
+  </ol>
+
+  <!-- Testimonials -->
+  <div class="carousel-inner">
+    {% for data in query %}
+    <div class="carousel-item {% if loop.index0 == 0 %}active{% endif %}">
+      <div class="testimonial">
+        <div class="single-testi">
+          <!-- Testimonial content goes here -->
+          <div class="row">
+            <div class="col-xl-10 offset-xl-1 col-lg-12 col-md-12">
+              <!-- Rest of the testimonial content -->
+                     <div class="testi-box text-center pos-rel">
+                  <div class="testi-content pos-rel">
+                    <div class="testi-bg-icon">
+                      <img src="/assets/img/testimonials/testi-box-bg.png" alt="" />
+                    </div>
+                    <div class="testi-quato-icon">
+                      <img src="/assets/img/testimonials/testi-quato-icon.png" alt="" />
+                    </div>
+                    <div class="text-text-boxx">
+                      <p>
+                      {{data.message}}
+                      </p>
+                    </div>
+                    <span></span>
+                  </div>
+                  <div class="testi-author">
+                    <h2 class="testi-author-title">{{data.name}}</h2>
+                    <span class="testi-author-desination"
+                      >founder, uithemes</span
+                    >
+                  </div>
+                  <div class="test-author-icon">
+                    <img src="{{data.cover}}" alt="" class="testinomial-img" />
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Controls -->
+  <a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#testimonialCarousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<script>
+// JavaScript code to enable auto-sliding
+$(document).ready(function() {
+  // Activate the carousel
+  $('#testimonialCarousel').carousel();
+
+  // Enable auto-sliding
+  $('#testimonialCarousel').carousel({
+    interval: 5000 // Change this value to set the interval between slides (in milliseconds)
+  });
+});
+</script>

@@ -1,0 +1,175 @@
+<header>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <div class="top-bar d-none d-md-block">
+    <div class="container">
+      <div class="row d-flex align-items-center">
+        <div
+          class="col-xl-6 offset-xl-1 col-lg-6 offset-lg-1 col-md-7 offset-md-1"
+        >
+          <div class="header-info">
+            <span><i class="fas fa-phone"></i>+977 056-493611</span>
+            <span
+              ><i class="fas fa-envelope"></i>
+              nationalcityhospitalltd@gmail.com</span
+            >
+          </div>
+        </div>
+        <div class="col-xl-5 col-lg-5 col-md-4">
+          <div class="header-top-right-btn f-right">
+            <a
+              href="https://tele.danphecare.com/#/
+"
+              target="_blank"
+              class="btn"
+            >
+              Book Appointment</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- menu-area -->
+  <div class="header-menu-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-3 col-lg-3 col-md-5 d-flex align-items-center">
+          <div class="logo logo-circle pos-rel">
+            <a href="/">
+              <img
+                src="/assets/img/logo/hospital_logo.png"
+                alt=""
+                width="100px"
+                height="90px"
+              />
+            </a>
+          </div>
+        </div>
+        <div class="col-xl-9 col-lg-9 col-md-9">
+          <!-- <div class="header-right f-right">
+            <div class="header-social-icons f-right d-none d-xl-block">
+              <ul>
+                <li>
+                  <a
+                    href="https://www.facebook.com/nationalcityhospital"
+                    target="_blank"
+                    ><i class="fab fa-facebook-f"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div> -->
+          <div class="header__menu f-right">
+            <nav id="mobile-menu">
+              <ul>
+                <li>
+                  <a href="/">Home</a>
+                </li>
+                <li>
+                  <a href="/about">About us +</a>
+                  <ul class="submenu">
+                    <li>
+                      <a href="/about#about1">Introduction</a>
+                    </li>
+                    <li>
+                      <a href="/about#about2">Chairman's Message</a>
+                    </li>
+                    <li>
+                      <a href="/about#about3">Medical Director Message</a>
+                    </li>
+                    <li>
+                      <a href="/about#about4">Board of Directors </a>
+                    </li>
+                    <li>
+                      <a href="/about#about5">Senior Management team </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/department">Departments+</a>
+                  <ul class="submenu" style="width: 600px" id="submenu-list">
+                    
+                  </ul>
+                </li>
+                <li>
+                  <a href="/doctors">Doctors</a>
+                </li>
+
+                <li>
+                  <a href="/services">Services+</a>
+                  <ul class="submenu" id="services-submenu-list">
+                    
+                  </ul>
+                </li>
+                <li>
+                  <a href="#blog1">News and Media +</a>
+                  <ul class="submenu">
+                    <li><a href="/notices">Notices</a></li>
+
+                    <li><a href="/#blog1">Blogs</a></li>
+                    <li><a href="/img-gallery">Photo gallery </a></li>
+                    <li><a href="/video-gallery">Video Gallery</a></li>
+                    <li><a href="/#blog1">E-library </a></li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a>Academics +</a>
+                  <ul class="submenu">
+                    <li>
+                      <a href="https://www.shreemedical.edu.np"
+                        >Institution and Research</a
+                      >
+                    </li>
+                    <li>
+                      <a href="https://www.shreemedical.edu.np">Training</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/#packages1">Packages</a>
+                </li>
+                <li>
+                  <a href="/contact">Contact Us</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="mobile-menu"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    // Function to populate a submenu
+    function populateSubmenu(submenuId, submenuItems) {
+        var submenuList = $("#" + submenuId);
+
+        // Loop through the submenu items and add them to the submenu
+        for (var i = 0; i < submenuItems.length; i++) {
+            var menuItem = submenuItems[i];
+            submenuList.append('<li><a href="' + menuItem.href + '">' + menuItem.title + '</a></li>');
+        }
+    }
+
+    // Make an AJAX GET request to your Flask route
+    $.ajax({
+        url: "/get_submenu_items_department",
+        type: "GET",
+        success: function(data) {
+            // Populate the submenus using the data received from the server
+            populateSubmenu("submenu-list", data.submenu_items1);
+            populateSubmenu("services-submenu-list", data.submenu_items2);
+        },
+        error: function(error) {
+            console.log("Error:", error);
+        }
+    });
+});
+</script>

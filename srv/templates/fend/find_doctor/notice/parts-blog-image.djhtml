@@ -1,0 +1,26 @@
+{% for data in query %}
+<article class="postbox post format-image mb-40">
+    <div class="postbox__thumb">
+        <a href="/blog/{{data.slug}}">
+            <img src="{{data.cover}}" alt="blog image" />
+        </a>
+    </div>
+    <div class="postbox__text p-50">
+        <div class="post-meta mb-15">
+            <span><i class="far fa-calendar-check"></i> {{data.publishedOn.strftime('%A, %Y %B %d')}}
+            </span>
+        </div>
+        <h3 class="blog-title">
+            <a href="/blog/{{slug}}">{{data.title}}</a>
+        </h3>
+        <div class="post-text mb-20">
+            <p>
+                {{data.summary}}
+            </p>
+            <div class="read-more mt-30">
+                <a href="/blog/{{data.slug}}" class="btn theme-btn">read more</a>
+            </div>
+        </div>
+    </div>
+</article>
+{% endfor %}

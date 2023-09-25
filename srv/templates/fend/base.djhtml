@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>NCH- National City Hospital</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png" />
+    <!-- Place favicon.png in the root directory -->
+
+    <!-- CSS here -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/vendors/fend/css/nice-select.css" />
+    <link rel="stylesheet" href="/vendors/fend/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/vendors/fend/css/owl.carousel.min.css" />
+
+    <link rel="stylesheet" href="/vendors/fend/css/animate.min.css" />
+    <link rel="stylesheet" href="/vendors/fend/css/magnific-popup.css" />
+    <link rel="stylesheet" href="/vendors/css/all.min.css" />
+    <link rel="stylesheet" href="/vendors/fend/css/meanmenu.css" />
+    <link rel="stylesheet" href="/vendors/fend/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="/vendors/fend/css/owl.carousel.min.css" />
+
+    <link rel="stylesheet" href="/vendors/fend/css/slick.css" />
+    <link rel="stylesheet" href="/vendors/fend/css/default.css" />
+    <link rel="stylesheet" href="/vendors/fend/css/style.css" />
+    <!-- <link rel="stylesheet" href="static/fend/css/style2.css" /> -->
+
+    <link rel="stylesheet" href="/vendors/fend/css/responsive.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
+    <script>
+      function doad(id, api, body) {
+              fetch(api, {
+                  method  : 'POST',
+                  body    : body,
+              }).then(function(response) {
+                  if (!response.ok) return
+                  response.text().then(function(responseText) {
+                      document.getElementById(id).innerHTML = responseText
+                  })
+              })
+      }
+  </script>
+  </head>
+  <body>
+    {% include '/fend/navbar.html' %} 
+    {% block content %} {% endblock %}
+    <div>
+      {% block container %}{% endblock %}
+    </div>
+
+    {% include '/fend/block-fb-chat.djhtml' %}
+    {% include '/fend/footer.html' %}
+    {% block tail %}{% endblock %}
+
+    <!-- Bootstrap Js script -->
+    <script src="/vendors/bootstrap.bundle.min.js"></script>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <script src="/vendors/fend/js/vendor/modernizr-3.5.0.min.js"></script>
+  <script src="/vendors/fend/js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="/vendors/fend/js/owl.carousel.min.js"></script>
+
+  <script src="/vendors/fend/js/popper.min.js"></script>
+  <script src="/vendors/fend/js/bootstrap.min.js"></script>
+  <script src="/vendors/fend/js/isotope.pkgd.min.js"></script>
+  <script src="/vendors/fend/js/one-page-nav-min.js"></script>
+  <script src="/vendors/fend/js/slick.min.js"></script>
+  <script src="/vendors/fend/js/ajax-form.js"></script>
+  
+  <script src="/vendors/fend/js/wow.min.js"></script>
+  <script src="/vendors/fend/js/jquery.scrollUp.min.js"></script>
+  <script src="/vendors/fend/js/jquery.meanmenu.min.js"></script>
+  <script src="/vendors/fend/js/jquery.counterup.min.js"></script>
+  <script src="/vendors/fend/js/jquery.nice-select.min.js"></script>
+  <script src="/vendors/fend/js/waypoints.min.js"></script>
+  <script src="/vendors/fend/js/imagesloaded.pkgd.min.js"></script>
+  <script src="/vendors/fend/js/jquery.magnific-popup.min.js"></script>
+  <script src="/vendors/fend/js/plugins.js"></script>
+  <script src="/vendors/fend/js/main.js"></script>
+   <script src="/vendors/fend/js/owl.carousel.min.js"></script>
+
+
+  <script>
+    AOS.init();
+  </script>
+</html>

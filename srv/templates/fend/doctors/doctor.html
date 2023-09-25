@@ -1,0 +1,52 @@
+{% extends '/fend/base.djhtml' %} {% block container %}
+<div>
+  <!-- banner section -->
+  {% include '/fend/doctors/banner.html' %}
+  <!-- banner section ends -->
+  <!-- doctor section starts -->
+  <div id="doctors" class="row mt-5">
+    <script>
+      doad("doctors", "/api/nch/listdoct");
+
+      $(document).ready(function () {
+        $("#live-search").keyup(function () {
+          var input = $(this).val();
+
+          if (input != "") {
+            $.ajax({
+              url: "/api/pages/form/search",
+              method: "POST",
+              data: { input: input },
+
+              success: function (data) {
+                $("#doctors").html(data);
+              },
+            });
+          }
+        });
+      });
+
+      $(document).ready(function () {
+        $("#fuzzy-search").keyup(function () {
+          var data = $(this).val();
+
+          if (data != "") {
+            $.ajax({
+              url: "/api/pages/form/search/code",
+              method: "POST",
+              data: { data: data },
+
+              success: function (data) {
+                $("#doctors").html(data);
+              },
+            });
+          }
+        });
+      });
+    </script>
+  </div>
+  <!-- {% include '/fend/blogs/blogcontent.djhtml' %} -->
+
+  <!-- blog section ends -->
+</div>
+{% endblock %}

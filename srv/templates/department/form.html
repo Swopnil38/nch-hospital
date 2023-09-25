@@ -1,0 +1,52 @@
+{% extends '/backend/base.djhtml' %}
+
+{% block container %}
+<form id="wtf"  enctype="multipart/form-data">
+	<div class="row bg-light border rounded mb-4">
+		<div class="col-md-8 col-xs-12 p-4">
+			<div class="row mb-3">
+				<label for="deptname" class="col-sm-2 col-form-label col-form-label-sm">Department Name:</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control form-control-sm" name="department_name" id="deptname"
+					value="{{ obj.department_name }}" required>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row pb-4">
+		<div class="col-12">
+			<button class="btn btn-primary mt-4" type="button" onclick="formSubmit()">
+				Submit
+			</button>
+		</div>
+	</div>
+</form>
+
+<script>
+	function formSubmit() {
+		let ewtf = document.getElementById('wtf')
+
+		fetch(`/api/dept/add`, {
+			method: 'POST',
+			body: new FormData(ewtf)
+		}).then(function (response) {
+			alert('Form Submitted')
+			window.location.href = '/dept/dash'
+		})
+	}
+
+	function formDelete(_id) {
+		if (confirm("Do you want to delete this Department?") == true) {
+
+			fetch(`/api/dept/delete/${_id}`, {
+				method: 'DELETE'
+			}).then(function (response) {
+				alert('Department Deleted')
+				window.location.href = '/dept/dash'
+			})
+		}
+	}
+</script>
+{% endblock %}

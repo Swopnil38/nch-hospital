@@ -1,0 +1,30 @@
+<style>
+    .filepath {
+        text-overflow: ellipsis;
+    }
+</style>
+<table class="table bg-light table-striped table-responsive p-2">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Department Name</th>
+            <th scope="col">Active Status</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        {% for obj in objs %}
+        <tr>
+            <th scope="row"><a class="text-decoration-none" href="/add/dept/{{ obj.department_id }}">{{ obj.department_id }}</a>
+            </th>
+            <td>{{ obj.department_name }}</td>
+            <td>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" {% if
+                        obj.rec_status=='a' %} checked {% endif %}>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

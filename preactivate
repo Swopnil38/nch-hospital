@@ -1,0 +1,4 @@
+#!C:\Program Files\Git\usr\bin\bash.exe
+# This hook is run before every virtualenv is activated.
+# argument: environment name
+

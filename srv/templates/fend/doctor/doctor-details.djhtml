@@ -1,0 +1,12 @@
+{% extends '/fend/base.djhtml' %} {% block container %}
+<div>
+  <!-- banner section -->
+  {% include '/fend/doctor/banner.html' %}
+  <!-- banner section ends -->
+  <!-- blog section starts -->
+  {% include '/fend/doctor/doctor-content.djhtml' %}
+
+  <!-- blog section ends -->
+
+</div>
+{% endblock %}

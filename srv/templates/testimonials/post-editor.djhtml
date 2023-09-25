@@ -1,0 +1,124 @@
+{% set pk = pk | default('null') or 'null' %}
+{% set pageFor = pageFor | default(false) %}
+{% if pageFor is string() %}
+    {% set pageTitle = pageFor + ' ' + ('Add' if 'null' == pk else pk.__str__()) %}
+{% endif %}
+{% extends '/backend/base.djhtml' %}
+
+
+{% block head %}
+    {{ super() }}
+    <script src="/vendors/tinymce/tinymce.min.js"></script>
+{% endblock %}
+
+
+{% block content %}
+    <section id="breadcrumbs" class="breadcrumbs mb-3">
+        <div class="container">
+            <h2>Testinmial Editor</h2>
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block container %}
+<style>
+    .front-frame-img {
+        height: 250px;
+        width: 100%;
+        background-color: var(--blog-featured-bg);
+        display: flex;
+        justify-content: center;
+    }
+    
+    .front-frame-img img{
+        max-height: 100%;
+        max-width: 100%;
+        margin: auto;
+    }
+    
+    
+    .entry-img img {
+        object-fit: cover;
+        width: 50%;
+        height: 100%;
+    }
+    
+</style>
+    <form id="ed">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col">
+                        <label for="ed-title" class="form-label">
+                            Name <sup style="color:red">*</sup>
+                        </label>
+        
+                        <input id="ed-name" name="name" value="{{obj.name}}" class="form-control mb-3" placeholder="Enter Person Name" maxlength=128 required />
+                    </div>
+                    <div class="col">
+                        <label for="ed-title" class="form-label">
+                            Designation <sup style="color:red">*</sup>
+                        </label>
+        
+                        <input id="ed-title" name="title" value="{{obj.title}}" class="form-control mb-3" placeholder="Enter a Title" maxlength=128 required />
+        
+                        
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <textarea id="ed-message" name="message" placeholder="Write a New Post">{{obj.message or ''}}</textarea>
+                </div>
+
+                <div class="btn-back mb-4">
+                    <a href="/test/dash" class="btn btn-secondary"><i class="bi bi-box-arrow-left"></i> Go Back</a>
+                </div>
+                
+            </div>
+
+            <div id="sidebar" class="col-md-4 d-flex flex-column">
+                <div>
+                    <label style="display:flex; justify-content: space-between;" for="ed-cover" class="form-label">
+                        <button id="ed-cover-reset" type="button" class="col-2 btn btn-sm btn-outline-primary">Reset</button>
+                            Testimonials Image
+                        <button id="ed-cover-remove" type="button" class="col-2 btn btn-sm btn-outline-danger">Remove</button>
+                    </label>
+
+                    <hr />
+
+                    <input id="ed-cover" name="cover" value="{{obj.cover or ''}}" class="form-control" style="display:none" />
+
+                    <div class="front-frame-img">
+                        <img id="ed-cover-preview" src="{{obj.cover or '/assets/img/1600x900.webp'}}" />
+                    </div>
+                </div>
+                <hr>
+
+                <div id="btn-publish-delete" class="d-flex flex-row justify-content-between pt-2 pb-4">
+                    {% if 'null' != pk %}
+                        <div class="me-auto">
+                            <button id="btn-delete" type="button" class="btn btn-danger">
+                                <i class="fas fa-trash"></i>
+                                Delete
+                            </button>
+                        </div>
+                    {% endif %}
+
+                    <div class="ms-auto">
+                        <button id="btn-submit" type="submit" class="btn btn-success">
+                            <i class="fas fa-arrow-alt-circle-up"></i>
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+{% block tail %}
+    <script type="module">
+        import * as pf from '/static/test-editor.mjs';
+        pf.init('ed', {{ pk }})
+    </script>
+{% endblock %}

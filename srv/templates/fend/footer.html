@@ -1,0 +1,132 @@
+<footer class="footer-content">
+ 
+  <!-- Messenger Chat Plugin Code -->
+  <div id="fb-root"></div>
+
+  <!-- Your Chat Plugin code -->
+  <div id="fb-customer-chat" class="fb-customerchat">
+  </div>
+
+  <script>
+    var chatbox = document.getElementById('fb-customer-chat');
+    chatbox.setAttribute("page_id", "109192025252753");
+    chatbox.setAttribute("attribution", "biz_inbox");
+  </script>
+
+  <!-- Your SDK code -->
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        xfbml            : true,
+        version          : 'v18.0'
+      });
+    };
+
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+
+  <div class="footer-top primary-bg pt-115 pb-90 mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-5 col-lg-6 col-md-8">
+          <div class="footer-contact-info mb-30">
+            <div class="emmergency-call fix">
+              <div class="emmergency-call-icon f-left">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="emmergency-call-text f-left">
+                <h6>Emergency number</h6>
+                <span>+97756-493511,493611,493711</span>
+              </div>
+            </div>
+            <div class="footer-logo mb-35">
+              <a href=""
+                ><img
+                  src="/assets/img/logo/hospital_logo.png"
+                  style="max-width: 40%"
+              /></a>
+            </div>
+            <div class="footer-contact-content mb-25">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut.
+              </p>
+            </div>
+            <div class="footer-emailing">
+              <ul>
+                <li>
+                  <i class="far fa-envelope"></i
+                  >nationalcityhospitalltd@gmail.com
+                </li>
+                <li><i class="far fa-clone"></i>nationalcityhospital.com</li>
+                <li>
+                  <i class="far fa-flag"></i>Bharatpur-10, Hospital
+                  road,chitwan, Nepal
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-2 offset-xl-1 col-lg-3 col-md-4">
+          <div class="footer-widget mb-30">
+            <div class="footer-title">
+              <h3>Departments</h3>
+            </div>
+            <div class="footer-menu">
+              <ul>
+                <li><a href="#">Surgery and Radiology</a></li>
+                <li><a href="#">Family Medicine</a></li>
+                <li><a href="#">Women’s Health</a></li>
+                <li><a href="#">Optician</a></li>
+                <li><a href="#">Pediatrics</a></li>
+                <li><a href="#">Dermatology</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-2 offset-xl-1 col-lg-3 d-md-none d-lg-block">
+          <div class="footer-widget mb-30">
+            <div class="footer-title">
+              <h3>Quick Links</h3>
+            </div>
+            <div class="footer-menu">
+              <ul>
+                <li><a href="/department">Departments</a></li>
+                <li><a href="/doctors">Our Doctors</a></li>
+                <li><a href="/blogs">News</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+                <li>
+                  <a href="https://tele.danphecare.com/#/"
+                    >Book an Appointment</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom pt-25 pb-20">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="footer-copyright text-center">
+            <p class="white-color">
+              Copyright by@ National City Hospital - 2023
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

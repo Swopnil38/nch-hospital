@@ -1,0 +1,55 @@
+{% extends '/fend/base.djhtml' %} {% block container %}
+<script src="/vendors/jquery.min.js"></script>
+<div>
+  <!-- banner section -->
+  {% include '/fend/find_doctor/banner.html' %}
+  <!-- banner section ends -->
+
+  <!-- search section starts -->
+  {% include '/fend/find_doctor/search_doctor.html' %}
+  <!-- search section ends -->
+
+  <!-- doctor list -->
+  <div id="doctors" class="row mt-5">
+    <script>
+      doad("doctors", "/api/nch/listdoct");
+
+      $(document).ready(function () {
+        $("#live-search").keyup(function () {
+          var input = $(this).val();
+
+          if (input != "") {
+            $.ajax({
+              url: "/api/pages/form/search",
+              method: "POST",
+              data: { input: input },
+
+              success: function (data) {
+                $("#doctors").html(data);
+              },
+            });
+          }
+        });
+      });
+
+      $(document).ready(function () {
+        $("#fuzzy-search").keyup(function () {
+          var data = $(this).val();
+
+          if (data != "") {
+            $.ajax({
+              url: "/api/pages/form/search/code",
+              method: "POST",
+              data: { data: data },
+
+              success: function (data) {
+                $("#doctors").html(data);
+              },
+            });
+          }
+        });
+      });
+    </script>
+  </div>
+</div>
+{% endblock %}

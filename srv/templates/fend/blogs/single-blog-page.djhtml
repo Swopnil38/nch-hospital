@@ -1,0 +1,66 @@
+{% extends '/fend/base.djhtml' %}
+
+{% block container %}
+<div>
+  <!-- banner section -->
+  {% include '/fend/blogs/banner.html' %}
+  <!-- banner section ends -->
+  <!-- blog section starts -->
+  <!-- blog-area start -->
+  <section class="blog-area pt-120 pb-80">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <article class="postbox post format-image mb-40">
+            <div class="postbox__thumb mb-35">
+              <img src="{{row.cover}}" alt="blog image" />
+            </div>
+            <div class="postbox__text bg-none">
+              <div class="post-meta mb-15">
+                <span><i class="far fa-calendar-check"></i> {{row.publishedOn.strftime('%A, %Y %B %d')}}
+                </span>
+              </div>
+              <h3 class="blog-title">
+                {{row.title}}
+              </h3>
+              <div class="post-text mb-20">
+                <p>
+                  {{row.content}}
+                </p>
+
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="col-lg-4">
+          <div class="widget mb-40">
+            <div class="widget-title-box mb-30">
+              <span class="animate-border"></span>
+              <h3 class="widget-title">Popular Feeds</h3>
+            </div>
+            <ul class="recent-posts">
+              {% for data in query %}
+              <li>
+                <div class="widget-posts-image">
+                  <a href="/blog/{{data.slug}}"><img src="{{data.cover}}" alt="" /></a>
+                </div>
+                <div class="widget-posts-body">
+                  <h6 class="widget-posts-title">
+                    <a href="/blog/{{data.slug}}">{{data.title}}</a>
+                  </h6>
+                  <div class="widget-posts-meta">{{data.publishedOn.strftime('%A, %Y %B %d')}}</div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- blog-area end -->
+
+  <!-- blog section ends -->
+</div>
+{% endblock %}

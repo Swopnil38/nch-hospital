@@ -1,0 +1,50 @@
+{% set pageTitle = 'Blog Post' %}
+{% extends '/backend/base.djhtml' %}
+
+
+{% block head %}
+    <link rel='stylesheet' href='/static/css/blog.css'>
+{% endblock %}
+
+
+{% block content %}
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+            <h2>{{row.title}}</h2>
+        </div>
+    </section>
+
+    <section id="blog" class="blog">
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+                <div class="col entries">
+                    <article class="entry entry-single">
+                        <div class="entry-img">
+                            <img src="{{row.cover or '/media/img/logo.png'}}" alt="" class="img-fluid">
+                        </div>
+
+                        <h2 class="entry-title">
+                            <a href="#">{{row.title}}</a>
+                        </h2>
+
+                        <div class="entry-meta">
+                            <ul>
+                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#">
+                                    <time datetime="2020-01-01">
+					                    {{row.publishedOn.strftime("%d %b, %Y")}}
+                                    </time></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="entry-content-full">
+                            <p>
+                                {{row.content}}
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

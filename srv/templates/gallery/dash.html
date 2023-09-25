@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image and Video Gallery</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Image Gallery</h1>
+    <div class="image-gallery">
+        <div id="ajax-gallery" class="row">
+            <script>
+              doad("ajax-gallery", "/api/nch/gallerys");
+            </script>
+          </div>
+    </div>
+
+    <h1>Video Gallery</h1>
+    <div class="video-gallery">
+        {% for video in youtube_videos %}
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video.video_id }}" frameborder="0" allowfullscreen></iframe>
+        {% endfor %}
+    </div>
+</body>
+</html>

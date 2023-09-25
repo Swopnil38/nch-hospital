@@ -1,0 +1,13 @@
+{% for gal in query %}
+<div class="col-xl-3 col-lg-3 col-md-9">
+    <div class="team-box text-center mb-80" style="margin-bottom:80px;">
+        <div class="team-thumb mb-45 pos-rel">
+            <img src="{{gal.cover}}" alt="" style="width:270px; height:270px;" />
+        </div>
+        <button class="delete-button" data-image-id="{{ gal.id }}">Delete</button>
+
+    </div>
+</div>
+
+{% endfor %}
+

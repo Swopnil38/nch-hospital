@@ -1,0 +1,124 @@
+{% extends '/fend/base.djhtml' %} {% block container %}
+<div>
+  <section
+    class="breadcrumb-bg pt-200 pb-180"
+    data-background="/assets/img/page/page-bg.jpg"
+    style="height: 250px"
+  >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 col-md-9">
+          <div class="page-title">
+            <p class="small-text pb-15">We are here for your care.</p>
+            <h1>Find Doctor of Your Choice</h1>
+          </div>
+        </div>
+        <div
+          class="col-lg-3 col-md-3 d-flex justify-content-start justify-content-md-end align-items-center"
+        >
+          <div class="page-breadcumb">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="index.html">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Doctor
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    class="appointment-area appointment-area-3 pos-rel pt-115 pb-120"
+    data-background="/assets/img/appoinment/appointment-bg.jpg"
+  >
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-7 col-lg-8">
+          <div class="calculate-box white-bg">
+            <div class="calculate-content">
+              <div class="row">
+                <div class="col-xl-12">
+                  <div class="about-title news-letter-title mb-70">
+                    <h5 class="pink-color">Appointment</h5>
+                    <h1>Book Appointment</h1>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                  <select>
+                    <option value="1">Department</option>
+                    <option value="2">Surgery and Radiology</option>
+                    <option value="2">SPediatrics</option>
+                  </select>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                  <select>
+                    <option value="1">Doctor</option>
+                    <option value="2">Doctor Name</option>
+                    <option value="2">Doctor Name Two</option>
+                  </select>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                  <select>
+                    <option value="1">Your Name</option>
+                    <option value="2">Name One</option>
+                    <option value="2">Name Two</option>
+                  </select>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                  <form
+                    class="calculate-form appointment-form-3 mb-20"
+                    action="#"
+                  >
+                    <input type="text" placeholder="Your Phone number" />
+                    <i class="fas fa-phone"></i>
+                  </form>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                  <form
+                    class="calculate-form appointment-form-3 mb-20"
+                    action="#"
+                  >
+                    <input type="text" placeholder="Select date" />
+                    <i class="far fa-calendar"></i>
+                  </form>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                  <form
+                    class="calculate-form appointment-form-3 mb-20"
+                    action="#"
+                  >
+                    <input type="text" placeholder="Add time" />
+                    <i class="far fa-clock"></i>
+                  </form>
+                </div>
+                <div class="col-xl-12">
+                  <form
+                    class="calculate-form appointment-form-3 mb-20"
+                    action="#"
+                  >
+                    <textarea
+                      name="Special request"
+                      cols="30"
+                      rows="10"
+                      placeholder="Special request"
+                    ></textarea>
+                    <i class="far fa-edit"></i>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <a href="" class="btn mt-40">submit query</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% set pageTitle = 'Blog Dashboard' %} {% extends '/backend/base.djhtml' %} {%
+block head %}
+<link rel="stylesheet" href="/vendors/sdt.min.css" />
+<script src="/vendors/sdt.min.js"></script>
+{% endblock %} {% block container %}
+<style>
+  .blinker {
+    color: red;
+    animation: blinker 1s linear infinite;
+  }
+
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+</style>
+<h3 class="mt-3">Departments</h3>
+<hr>
+<div class="row">
+  <div class="col">
+    <table id="mytable" class="table table-hover">
+      <thead>
+        <tr>
+          {% for h in headers %}
+          <th>{{h}}</th>
+          
+          {% endfor %}
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for row in query %}
+        <tr>
+          {% for f in row %}
+          <td class="{% if f == 'draft' %} blinker {% elif f=='publish' %} text-success {% endif %}">
+            {{f}}
+          </td>
+          {% endfor %}
+          
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %} {% block tail %}
+<script>
+  document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+      let dt = new simpleDatatables.DataTable("#mytable", {
+        layout: {
+          top: '<a href="/add/dept" class="btn btn-success">Add</a> {search}',
+        },
+        columns: [
+          {
+            select: ["pk"],
+            title: "Action",
+            render: function (data, td, tr) {
+              return `<button onclick="deleteRow(${data})" class="btn btn-sm btn-danger text-decoration-none">Delete</button>
+                      <a href = '/edit/dept/${data.trim()}' class="btn btn-sm btn-primary text-decoration-none">Edit</a>`;
+              
+            },
+          },
+        ],
+      });
+    },
+    false
+  );
+
+  function deleteRow(pk) {
+    if (!confirm('Delete Record Permanently ?')) return
+    fetch(`/api/dept/delete/${pk}`, {
+        method: 'DELETE',
+    }).then(function () {
+        alert('Deleted Successfuly')
+        window.location.href = '/dept/dash'
+    })
+  }
+
+  // Add event listener for the Edit button
+  document.querySelectorAll('.btn-primary').forEach(function (button) {
+    button.addEventListener('click', function () {
+      // Handle edit functionality here
+    });
+  });
+</script>
+{% endblock %}

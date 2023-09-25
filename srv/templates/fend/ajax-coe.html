@@ -1,0 +1,28 @@
+<div class="row h4service-active">
+  {% for data in query %}
+  <div class="col-xl-4 col-lg-6 col-md-6">
+    <div class="h4service-box white-bg mb-30">
+      <div class="service-thumb pos-rel mb-0">
+        <a href="/services/{{data.slug}}"> <img src="{{data.cover}}" alt="" /></a>
+
+        <a
+          style="background-color: #e12454"
+          class="h4services-tag white-color text-uppercase f-700"
+          href="/services/{{data.slug}}"
+          >{{data.department_name}}</a
+        >
+      </div>
+      <div class="service-content h4services-content">
+        <h3><a href="/services/{{data.slug}}">{{data.title}}</a></h3>
+        <p class="mb-20 services-summary">
+          {% if data.summary %} {{data.summary | truncate(100, true ,'...')}} {%
+          endif %}
+        </p>
+        <a class="service-link" href="/services/{{data.slug}}"
+          >Read More<i class="fa-solid fa-arrow-right-long"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>

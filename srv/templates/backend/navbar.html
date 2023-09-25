@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="/static/backend/navbar.css">
+
+<div id="dashboard-navbar" class="row bg-primary-alt d-flex justify-content-between bg-navbar border border-bottom">
+	<div class="col-md-1 col-sm-6 col-xs-6"></div>	
+
+	<div class="col-md-6 col-sm-12 col-xs-12 d-flex justify-content-center nav-header-cms">
+		<div id="employees" class="nav-item col-md-3">
+			<a class="nav-link" href="/emp/dash">Employees</a>
+		</div>
+		<div id="content" class="nav-item col-md-3">
+			<a class="nav-link" href="/services/dash">Services</a>
+		</div>
+		<div id="file" class="nav-item col-md-3">
+			<a class="nav-link" href="/dept/dash">Department</a>
+		</div>
+		<div id="file" class="nav-item col-md-3">
+			<a class="nav-link" href="/pkg/dash">Packages</a>
+		</div>
+		<div id="file" class="nav-item col-md-3">
+			<a class="nav-link" href="/test/dash">Testinomial</a>
+		</div>
+		<div id="file" class="nav-item col-md-3">
+			<a class="nav-link" href="/blog/dash">Blog</a>
+		</div>
+		<div id="file" class="nav-item col-md-3">
+			<a class="nav-link" href="/notice/dash">Notices</a>
+		</div>
+		
+	</div>
+	<div class="col-md-2 col-xs-6 text-end">
+		<a class="btn btn-danger btn-sm me-3" type="button" style="font-size: 14px;font-weight: 590;margin-top: 5%;" href="/logout">
+			<i class="bi bi-box-arrow-left"></i> Logout
+		</a>
+	</div>
+</div>
+
+<script>
+	document.querySelectorAll(".nav-item").forEach((ele) =>
+	ele.addEventListener("click", function (event) {
+		document
+		.querySelectorAll(".nav-item")
+		.forEach((ele) => ele.classList.remove("active"));
+		this.classList.add("active")
+	})
+)
+</script>

@@ -1,0 +1,5 @@
+venv
+vendors
+*.pyc
+media/
+/assets

@@ -1,0 +1,10 @@
+<div class="recent-news-list mb-120">
+    {% for data in query %}
+    <div class="latest-news-content singl-news news-border-bottom">
+        <h3>
+            <a href="/blog/{{data.slug}}">{{data.title}}</a>
+        </h3>
+        <span class="meta-date"><i class="far fa-calendar"></i>{{data.publishedOn.strftime('%A, %Y %B %d')}}</span>
+    </div>
+    {% endfor %}
+</div>

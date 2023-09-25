@@ -1,0 +1,51 @@
+{% extends '/backend/base.djhtml' %}
+
+{% block container %}
+<form id="wtf"  enctype="multipart/form-data">
+	<div class="row bg-light border rounded mb-4">
+		<div class="col-md-8 col-xs-12 p-4">
+            <div class="row mb-3">
+				<label for="deptid" class="col-sm-2 col-form-label col-form-label-sm">Department ID:</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control form-control-sm" name="department_id" id="deptid"
+					value="{{ obj.pk }}" required>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label for="deptname" class="col-sm-2 col-form-label col-form-label-sm">Department Name:</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control form-control-sm" name="department_name" id="deptname"
+					value="{{ obj.department_name }}" required>
+				</div>
+			</div>
+			
+		</div>
+
+	</div>
+
+	<div class="row pb-4">
+		<div class="col-12">
+			<button class="btn btn-primary mt-4" type="button" onclick="formSubmit()">
+				Update
+			</button>
+		</div>
+	</div>
+</form>
+
+<script>
+	function formSubmit() {
+		let ewtf = document.getElementById('wtf')
+
+		let url = `/api/dept/edit/{{ obj.pk }}`; // Include the pk in the URL
+
+		fetch(url, { // Use the updated URL
+			method: 'POST',
+			body: new FormData(ewtf)
+		}).then(function (response) {
+			alert('Department Updated Successfully')
+			window.location.href = '/dept/dash'
+		})
+	}
+
+	</script>
+{% endblock %}

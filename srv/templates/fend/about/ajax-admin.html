@@ -1,0 +1,14 @@
+{% for data in query %}
+<div class="col-xl-4 col-lg-4 col-md-6">
+    <div class="team-box text-center mb-60">
+        <div class="team-thumb mb-45 pos-rel">
+            <img src="{{data.cover}}" alt="" />
+            <a class="team-link" href="/emp/{{data.slug}}">+</a>
+        </div>
+        <div class="team-content">
+            <h3>{{data.name}}</h3>
+            <h6>{{data.designation}}</h6>
+        </div>
+    </div>
+</div>
+{% endfor %}

@@ -1,0 +1,106 @@
+{% extends '/fend/base.djhtml' %} {% block container %}
+<div>
+    <main>
+        <section
+            class="breadcrumb-bg pt-200 pb-180"
+            data-background="/assets/img/page/page-bg.jpg"
+        >
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 col-md-9">
+                        <div class="page-title">
+                            <p class="small-text pb-15">
+                                We are here for your care.
+                            </p>
+                            <h3>{{ row.department_name }}</h3>
+                        </div>
+                     </div>
+                     <div class="section-title pos-rel mb-25">
+                        <div class="section-text pos-rel">
+                           <h2>{{ row.title }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="doctor-details-area pt-115 pb-70">
+            <div class="container">
+                <div class="row">
+                    <div class="{% if row.links %}col-xl-7 col-lg-8{% else %} col {%endif%}">
+                        <article class="doctor-details-box">
+                            <div class="section-title pos-rel mb-25">
+                                <div class="section-icon">
+                                    <img
+                                        class="section-back-icon back-icon-left"
+                                        src="img/section/section-back-icon-sky.png"
+                                        alt=""
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="section-title pos-rel mb-25">
+                                <div class="section-text pos-rel">
+                                    <h2>{{ row.title }}</h2>
+                                </div>
+                                <div class="section-line pos-rel">
+                                    <img
+                                        src="/assets/img/shape/section-title-line.png"
+                                        alt=""
+                                    />
+                                </div>
+                            </div>
+                            <div class="service-details-text mb-35">
+                                {{ row.content }}
+                            </div>
+                        </article>
+                    </div>
+                    {% if row.links %}
+                    <div class="col-xl-5 col-lg-4">
+                        <div class="service-widget mb-50">
+                            <div
+                                class="team-wrapper team-box-2 team-box-3 text-center mb-30"
+                            >
+                                <div class="team-thumb">
+                                </div>
+                                    <iframe src="{{row.links}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    <div class="team-member-info mt-35 mb-35">
+                                        <h3>{{ row.linkHeader }}</h3>
+                                        <h6
+                                        class="f-500 text-up-case letter-spacing pink-color"
+                                        >
+                                        {{ row.linkCaption }}
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                  </article>
+               </div>
+            </div>
+        </div>
+    </main>
+    <div class="container">
+        <div class="section-title pos-rel mb-25">
+            <div class="section-text pos-rel">
+                <h1>Our Top Specialist</h1>
+            </div>
+            <div class="section-line pos-rel">
+                <img
+                    src="/assets/img/shape/section-title-line.png"
+                    alt=""
+                />
+            </div>
+        </div>
+
+        <div id='special-doctors'  class="row mt-5">
+          <script>
+            doad('special-doctors', '/api/nch/specialdoct/{{row.pk}}')
+         </script>
+      </div>
+   </div>
+    {% include '/fend/department/symptomps-tab.html' %}
+
+</div>
+</div>
+{% endblock %}
